@@ -6,47 +6,81 @@ import no.hvl.dat100.jplab12.oppgave1.*;
 public class Blogg {
 
 	// TODO: objektvariable 
-
+	
+	private Innlegg[] Innleggtabell;
+	private int nesteledig;
+	
 	public Blogg() {
-		throw new UnsupportedOperationException(TODO.constructor("Blogg"));
+		Innleggtabell = new Innlegg[20];
+		nesteledig = 0;
+	
 	}
+	
 
 	public Blogg(int lengde) {
-		throw new UnsupportedOperationException(TODO.constructor("Blogg"));
+		Innleggtabell = new Innlegg[lengde];
+		nesteledig = 0;
+
 	}
 
 	public int getAntall() {
-		throw new UnsupportedOperationException(TODO.method());
+		return nesteledig;
+		
 	}
 	
 	public Innlegg[] getSamling() {
-		throw new UnsupportedOperationException(TODO.method());
+		return Innleggtabell;
+		
 
 	}
 	
 	public int finnInnlegg(Innlegg innlegg) {
-
-		throw new UnsupportedOperationException(TODO.method());
+		for(int i = 0; i < nesteledig; i++) {
+			if(Innleggtabell[i].erLik(innlegg)) {
+				return i;
+			}
+		}
+		return -1;
 	}
-
+	
 	public boolean finnes(Innlegg innlegg) {
-		throw new UnsupportedOperationException(TODO.method());
+		for(int i = 0; i < nesteledig; i++) {
+			
+			if(Innleggtabell[i].erLik(innlegg)) {
+				return true;
+			}
+		}
+		return false;
 	}
-
+	
 	public boolean ledigPlass() {
-		throw new UnsupportedOperationException(TODO.method());
-
+		if(nesteledig < Innleggtabell.length) {
+			return true; 
+		}
+		return false;
 	}
 	
 	public boolean leggTil(Innlegg innlegg) {
-
-		throw new UnsupportedOperationException(TODO.method());
+		if(finnes(innlegg)) {
+			return false;
+		}
+		Innleggtabell[nesteledig] = innlegg;
+		nesteledig++;
+		return true;
 	}
-	
 	public String toString() {
-		throw new UnsupportedOperationException(TODO.method());
+		
+		String str = nesteledig + "\n";
+		// Lager formaten på hvordan hver linje skal skrives ut
+		
+		for(int i = 0; i < nesteledig; i++) {
+			str = str + Innleggtabell[i].toString();
+			//Setter hjelpevariabelen lik seg selv pluss neste linje på formaten
+		}
+		return str;
 	}
-
+	//valgfrie oppgaver nedenfor
+	
 	// valgfrie oppgaver nedenfor
 	
 	public void utvid() {
